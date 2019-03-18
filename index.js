@@ -18,6 +18,20 @@ server.get('/users', (req, res) => {
       });
 })
 
+server.get('/users/:id', (req, res) => {
+    const { id } = req.params;
+    db
+      .findById(id)
+      .then(users => {
+          res.status(200).json(users)
+      })
+      .catch(error => {
+          res.status(404).json({message: "The user with the specified id does not exist"})
+      })  
+    // const user = users.filter(user => user.id.toString()=== req.params.id)
+})
+
+
 
 
 
