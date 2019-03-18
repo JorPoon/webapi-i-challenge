@@ -31,6 +31,20 @@ server.get('/users/:id', (req, res) => {
     // const user = users.filter(user => user.id.toString()=== req.params.id)
 })
 
+server.post('/users', (req, res) => {
+    const {name, bio} = req.body;
+    // const newUser = req.body
+    // if(typeof(name) === 'string' )
+    db
+      .insert({name, bio})
+      .then(user => {
+          res.status(201).json(user)
+      })  
+      .catch(error => {
+          res.status(400).json({message: 'Please provide bio and name for user'})
+      })  
+})
+
 
 
 
