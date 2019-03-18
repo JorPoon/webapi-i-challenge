@@ -45,6 +45,18 @@ server.post('/users', (req, res) => {
       })  
 })
 
+server.delete('/users/:id', (req, res) => {
+    const { id } = req.params;
+    db
+      .remove(id)
+      .then(removed => {
+          res.status(204).end();
+      })
+      .catch(error => {
+          res.status(500).json({message: 'error deleting the user'})
+      })      
+})
+
 
 
 
